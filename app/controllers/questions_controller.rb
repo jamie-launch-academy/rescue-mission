@@ -7,10 +7,20 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      flash[:success] = "Question entered successfully!"
+      flash[:message] = "Question entered successfully!"
       redirect_to @question
+    elsif @question.description.empty? && @question.title.empty?
+      flash[:message] = "You must provide a title and description"
+      render 'new'
+    elsif @question.title.empty?
+      flash[:message] = "You must provide a title"
+      render 'new'
+    elsif @question.description.empty?
+      flash[:message] = "You must provide a description"
+      render 'new'
     else
-      flash[:error] = "Error"
+      flash[:message] = 'Please make sure title has at least 10 characters and
+                        description has at least 50 character'
       render 'new'
     end
   end
@@ -20,7 +30,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @question = Question.all
+    @question = Question.all.order ('created_at DESC')
   end
 
   private
