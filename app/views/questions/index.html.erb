@@ -6,7 +6,6 @@
   </tr>
 
   <%= link_to 'Ask a question', new_question_path %>
-
   <% @question.each do |q| %>
   <tr>
     <td><a href="/questions/<%= q.id %>"><%= q.title %></a></td>

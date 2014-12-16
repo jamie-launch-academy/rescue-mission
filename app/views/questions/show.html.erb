@@ -12,3 +12,22 @@
   <strong>description:</strong>
   <%= @question.description %>
 </p>
+
+<% @sup.each do |comment| %>
+  <ul><%= comment.message %> </ul>
+<% end %>
+
+<%= form_for [@question, @response] do |m| %>
+
+<p>
+  <%= m.label :message %><br>
+  <%= m.text_area :message, :size=>"36x15", :placeholder => "Please enter your message" %>
+</p>
+
+<p>
+  <%= m.submit "Submit" %>
+</p>
+<% end %>
+
+
+<%= link_to 'View all questions', questions_path %>
