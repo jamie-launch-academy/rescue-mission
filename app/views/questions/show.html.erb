@@ -13,10 +13,9 @@
   <%= @question.description %>
 </p>
 
-<% @show_response.each do |comment| %>
+<% @question.responses.each do |comment| %>
   <ul><%= comment.message %> </ul>
 <% end %>
-
 <%= render 'form2' %>
 
 <%= link_to 'View all questions', questions_path %>

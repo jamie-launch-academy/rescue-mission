@@ -3,4 +3,6 @@ class Question < ActiveRecord::Base
               length: { minimum: 10 }
   validates :description, presence: true,
                 length: { minimum: 50 }
+                
+  has_many :responses
 end

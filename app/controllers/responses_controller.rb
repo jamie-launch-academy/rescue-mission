@@ -7,7 +7,10 @@ class ResponsesController < ApplicationController
 
     @question = Question.find(params[:question_id])
     @response = Response.new(response_params)
-    @response.post_id = params[:question_id]
+    @response.question_id = params[:question_id]
+
+
+    # binding.pry
 
     if @response.save
       flash[:message] = "You have successfully posted a message"

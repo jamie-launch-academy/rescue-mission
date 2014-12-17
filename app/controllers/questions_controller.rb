@@ -16,9 +16,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.find_by(id: params[:id])
     @response = Response.new
-    @show_response = Response.where(post_id: params[:id])
+    @show_response = @question.responses
   end
 
   def index
