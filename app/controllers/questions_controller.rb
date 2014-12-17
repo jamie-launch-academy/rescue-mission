@@ -10,31 +10,41 @@ class QuestionsController < ApplicationController
     if @question.save
       flash[:message] = "Question entered successfully!"
       redirect_to @question
-    elsif @question.description.empty? && @question.title.empty?
-      flash[:message] = "You must provide a title and description"
-      render 'new'
-    elsif @question.title.empty?
-      flash[:message] = "You must provide a title"
-      render 'new'
-    elsif @question.description.empty?
-      flash[:message] = "You must provide a description"
-      render 'new'
     else
-      flash[:message] = 'Please make sure title has at least 10 characters and
-                        description has at least 50 characters'
       render 'new'
     end
   end
 
   def show
     @question = Question.find(params[:id])
-    # @respsonse = Response.where(params[:post_id])
     @response = Response.new
-    @sup = Response.where(post_id: params[:id])
+    @show_response = Response.where(post_id: params[:id])
   end
 
   def index
     @question = Question.all.order ('created_at DESC')
+  end
+
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+
+    if @question.update
+      flash[:message] = "Question entered successfully!"
+      redirect_to @question
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+
+    redirect_to questions_path
   end
 
   private

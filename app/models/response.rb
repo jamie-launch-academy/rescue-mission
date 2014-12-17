@@ -1,6 +1,8 @@
 class Response < ActiveRecord::Base
   validates :message,
-  presence: true
+  presence: true,
+  length: { minimum: 50 }
+  
   validates :post_id,
   presence: true
 

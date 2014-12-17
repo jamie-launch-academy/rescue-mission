@@ -10,7 +10,7 @@ class ResponsesController < ApplicationController
     @response.post_id = params[:question_id]
 
     if @response.save
-      flash[:message] = "You win"
+      flash[:message] = "You have successfully posted a message"
       redirect_to @question
     else
       render 'questions/show'

@@ -1,0 +1,26 @@
+<%= form_for :question, url: questions_path do |q| %>
+
+<% if @question.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+  <ul><% @question.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<p>
+  <%= q.label :title %><br>
+  <%= q.text_field :title, :size=>"50", :placeholder => "Please enter at least 10 characters" %>
+</p>
+
+<p>
+  <%= q.label :description %><br>
+  <%= q.text_area :description, :size=>"36x25", :placeholder => "Please enter at least 50 characters" %>
+</p>
+
+<p>
+  <%= q.submit "Submit" %>
+</p>
+<% end %>

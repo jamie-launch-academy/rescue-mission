@@ -1,20 +1,5 @@
 <h1> New Question </h1>
-<%= flash[:message] %>
 
-    <%= form_for :question, url: questions_path do |q| %>
-<p>
-  <%= q.label :title %><br>
-  <%= q.text_field :title, :size=>"50", :placeholder => "Please enter at least 10 characters" %>
-</p>
-
-<p>
-  <%= q.label :description %><br>
-  <%= q.text_area :description, :size=>"36x25", :placeholder => "Please enter at least 50 characters" %>
-</p>
-
-<p>
-  <%= q.submit "Submit" %>
-</p>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'View all questions', questions_path %>
